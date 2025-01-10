@@ -1,5 +1,10 @@
 <?php
-// Hash a password securely
-$plainPassword = 'yourpassword123';
-$hashedPassword = password_hash($plainPassword, PASSWORD_BCRYPT);
-echo $hashedPassword;
+$hashedPassword = password_hash('password123', PASSWORD_DEFAULT);
+$stmt = $conn->prepare("INSERT INTO users (username, password, role, is_active) VALUES (?, ?, ?, ?)");
+$stmt->bind_param("sssi", $username, $hashedPassword, $role, $isActive);
+
+$username = 'admin';
+$role = 'Admin';
+$isActive = 1;
+$stmt->execute();
+?>

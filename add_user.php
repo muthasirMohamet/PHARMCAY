@@ -1,6 +1,6 @@
 <?php
 // Database connection
-$pdo = new PDO('mysql:host=localhost;dbname=pharmacy_db', 'username', 'password');
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_user'])) {

@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" class="form-control" id="stock" name="stock" value="<?php echo $medicine['stock']; ?>" required>
             </div>
-            <button type="submit" class="btn btn-primary">Update Medicine</button>
+            <button type="submit" class="btn btn-primary" action="inventoty.php">Update Medicine</button>
         </form>
     </div>
 </body>

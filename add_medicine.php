@@ -1,4 +1,5 @@
 <?php
+include 'db.php'; // Include the database connection file
 
 // Check if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,9 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selling_price = $_POST['selling_price'];
     $stock = $_POST['stock'];
 
-    // Insert new medicine into database
+    // Insert new medicine into the database
     $query = "INSERT INTO medicines (name, category, manufacturer, batch_number, expiry_date, cost_price, selling_price, stock)
               VALUES ('$name', '$category', '$manufacturer', '$batch_number', '$expiry_date', '$cost_price', '$selling_price', '$stock')";
+    
     if ($conn->query($query) === TRUE) {
         header("Location: inventory.php");
         exit();
@@ -22,6 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,9 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="bg-light">
     <div class="container mt-5">
         <h2 class="text-center mb-4">Add New Medicine</h2>
-        <button type="submit" class="btn btn-success margin-left">Add Medicine</button>
-        <button type="" class="btn btn-success"><a href="/pharmacy_management/inventory.php">Back</a></button><br>
-
+        <div class="d-flex justify-content-between mb-3">
+            <button type="button" class="btn btn-success">
+                <a href="/pharmacy_management/inventory.php" class="text-white text-decoration-none">Back</a>
+            </button>
+        </div>
         <form action="add_medicine.php" method="POST">
             <div class="mb-3">
                 <label for="name" class="form-label">Medicine Name</label>
@@ -62,19 +68,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="mb-3">
                 <label for="cost_price" class="form-label">Cost Price</label>
-                <input type="number" class="form-control" id="cost_price" name="cost_price" required>
+                <input type="number" class="form-control" id="cost_price" name="cost_price" required step="0.01">
             </div>
             <div class="mb-3">
                 <label for="selling_price" class="form-label">Selling Price</label>
-                <input type="number" class="form-control" id="selling_price" name="selling_price" required>
+                <input type="number" class="form-control" id="selling_price" name="selling_price" required step="0.01">
             </div>
             <div class="mb-3">
                 <label for="stock" class="form-label">Stock</label>
                 <input type="number" class="form-control" id="stock" name="stock" required>
             </div>
+            <button type="submit" class="btn btn-success">Add Medicine</button>
         </form>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
