@@ -1,0 +1,11 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "123";
+$dbname = "pharmacy_db";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Database connection failed: " . $conn->connect_error);
+}
+?>
